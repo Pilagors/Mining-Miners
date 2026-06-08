@@ -1,6 +1,7 @@
 {
     "parent": "block/cube",
     "textures": {
+        "particle": "miningminers:block/basic_controller",
         "up": "miningminers:block/basic_controller",
         "down": "miningminers:block/basic_controller",
         "north": "miningminers:block/basic_controller",

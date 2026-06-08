@@ -1,0 +1,7 @@
+{
+    "model": {
+        "type": "minecraft:model",
+        "model": "miningminers:block/basic_controller"
+    }
+
+}

@@ -14,6 +14,11 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
+import net.minecraft.world.item.CreativeModeTabs;
 import org.slf4j.Logger;
 
 @Mod(MiningMiners.MODID)
@@ -25,13 +30,14 @@ public final class MiningMiners {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
-    public static final RegistryObject<Block> BASIC_CONTROLLER = BLOCKS.register("basic_controller", () -> new Block(BlockBehaviour.Properties.of().strength(2f)));
-    public static final RegistryObject<Item> BASIC_CONTROLLER_ITEM = ITEMS.register("basic_controller", () -> new BlockItem(BASIC_CONTROLLER.get(), new Item.Properties()));
+    public static final RegistryObject<Block> BASIC_CONTROLLER = BLOCKS.register("basic_controller", () -> new Block(BlockBehaviour.Properties.of().setId(BLOCKS.key("basic_controller")).strength(2f)));
+    public static final RegistryObject<Item> BASIC_CONTROLLER_ITEM = ITEMS.register("basic_controller", () -> new BlockItem(BASIC_CONTROLLER.get(), new Item.Properties().setId(ITEMS.key("basic_controller"))));
 
     public MiningMiners(FMLJavaModLoadingContext context) {
         var modBusGroup = context.getModBusGroup();
 
         FMLCommonSetupEvent.getBus(modBusGroup).addListener(this::commonSetup);
+        BuildCreativeModeTabContentsEvent.getBus(modBusGroup).addListener(MiningMiners::addToCreativeTabs);
 
         BLOCKS.register(modBusGroup);
         ITEMS.register(modBusGroup);
@@ -42,6 +48,12 @@ public final class MiningMiners {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         LOGGER.info("Mining Miners - Common Setup");
+    }
+
+    private static void addToCreativeTabs(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+            event.accept(BASIC_CONTROLLER_ITEM);
+        }
     }
 
     @Mod.EventBusSubscriber(modid = MODID, value = Dist.CLIENT)

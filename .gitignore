@@ -72,3 +72,8 @@ replay_pid*
 *.log
 logs/
 crash-reports/
+
+# =====================
+# Claude
+# =====================
+.claude/
