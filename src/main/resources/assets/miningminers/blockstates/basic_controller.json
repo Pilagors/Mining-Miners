@@ -1,0 +1,7 @@
+{
+    "variants" : {
+        "" : {
+            "model" : "miningminers:block/basic_controller"
+        }
+    }
+}

@@ -25,6 +25,9 @@ public final class MiningMiners {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
+    public static final RegistryObject<Block> BASIC_CONTROLLER = BLOCKS.register("basic_controller", () -> new Block(BlockBehaviour.Properties.of().strength(2f)));
+    public static final RegistryObject<Item> BASIC_CONTROLLER_ITEM = ITEMS.register("basic_controller", () -> new BlockItem(BASIC_CONTROLLER.get(), new Item.Properties()));
+
     public MiningMiners(FMLJavaModLoadingContext context) {
         var modBusGroup = context.getModBusGroup();
 
