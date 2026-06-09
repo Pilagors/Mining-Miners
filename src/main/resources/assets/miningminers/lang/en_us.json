@@ -1,4 +1,6 @@
 {
     "block.miningminers.basic_controller": "Basic Controller",
-    "item.miningminers.basic_controller": "Basic Controller"
+    "item.miningminers.basic_controller": "Basic Controller",
+    "itemGroup.miningminers" : "Mining Miners",
+    "container.miningminers.basic_controller" : "Basic Miner"
 }
