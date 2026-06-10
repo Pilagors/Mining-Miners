@@ -1,0 +1,8 @@
+{
+    "type" : "miningminers:basic_controller",
+    "output" : {
+        "id" : "minecraft:iron_ore",
+        "count" : 1
+    },
+    "processingTime" : 100
+}
